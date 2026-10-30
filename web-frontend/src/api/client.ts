@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let rawBase = import.meta.env.VITE_API_URL || 'https://backend-1-jet.vercel.app/api';
+let rawBase = import.meta.env.VITE_API_URL || 'https://eduneev.vercel.app/api';
 if (!rawBase.startsWith('http://') && !rawBase.startsWith('https://')) {
   rawBase = `https://${rawBase}`;
 }
