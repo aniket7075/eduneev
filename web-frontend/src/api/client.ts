@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://backend-mu-orpin-66.vercel.app/api';
+let rawBase = import.meta.env.VITE_API_URL || 'https://backend-1-jet.vercel.app/api';
+if (!rawBase.startsWith('http://') && !rawBase.startsWith('https://')) {
+  rawBase = `https://${rawBase}`;
+}
+
+const BASE_URL = rawBase;
 
 const apiClient = axios.create({
   baseURL: BASE_URL,

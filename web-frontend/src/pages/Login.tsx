@@ -27,8 +27,16 @@ const Login: React.FC = () => {
     if (hour < 6 || hour >= 18) setIsNight(true);
   }, []);
 
-  const triggerError = (msg: string) => {
-    setError(msg);
+  const triggerError = (msg: any) => {
+    let safeMsg = 'An unexpected error occurred. Please try again.';
+    if (typeof msg === 'string') {
+      safeMsg = msg;
+    } else if (msg && typeof msg.message === 'string') {
+      safeMsg = msg.message;
+    } else if (msg && typeof msg.error === 'string') {
+      safeMsg = msg.error;
+    }
+    setError(safeMsg);
     setShakeError(true);
     setTimeout(() => setShakeError(false), 500);
   };
@@ -72,7 +80,18 @@ const Login: React.FC = () => {
         }
       }, 1500);
     } catch (err: any) {
-      triggerError(err.response?.data?.error || err.response?.data?.message || 'Invalid email or password. Please try again.');
+      const errData = err.response?.data;
+      let errMsg = 'Invalid email or password. Please try again.';
+      if (typeof errData?.error === 'string') {
+        errMsg = errData.error;
+      } else if (errData?.error && typeof errData.error.message === 'string') {
+        errMsg = errData.error.message;
+      } else if (typeof errData?.message === 'string') {
+        errMsg = errData.message;
+      } else if (err.message && typeof err.message === 'string') {
+        errMsg = err.message;
+      }
+      triggerError(errMsg);
     } finally {
       setLoading(false);
     }
