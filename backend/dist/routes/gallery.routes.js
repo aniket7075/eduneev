@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const gallery_controller_1 = require("../controllers/gallery.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const upload_middleware_1 = require("../middlewares/upload.middleware");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authenticate);
+router.get('/', gallery_controller_1.getAlbums);
+router.post('/', upload_middleware_1.uploadMiddleware.single('cover_image'), gallery_controller_1.createAlbum);
+router.delete('/:id', gallery_controller_1.deleteAlbum);
+router.get('/:album_id/photos', gallery_controller_1.getPhotos);
+router.post('/:album_id/photos', upload_middleware_1.uploadMiddleware.single('photo'), gallery_controller_1.addPhoto);
+router.delete('/photos/:photo_id', gallery_controller_1.deletePhoto);
+exports.default = router;

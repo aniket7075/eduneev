@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const transport_controller_1 = require("../controllers/transport.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const rbac_middleware_1 = require("../middlewares/rbac.middleware");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authenticate);
+router.get('/routes', transport_controller_1.getTransportRoutes);
+router.get('/routes/:route_id/students', transport_controller_1.getRouteStudents);
+router.get('/student/:student_id', transport_controller_1.getStudentTransport);
+router.post('/routes', (0, rbac_middleware_1.authorize)(['super_admin', 'school_admin']), transport_controller_1.createTransportRoute);
+router.put('/routes/:id', (0, rbac_middleware_1.authorize)(['super_admin', 'school_admin']), transport_controller_1.updateTransportRoute);
+router.delete('/routes/:id', (0, rbac_middleware_1.authorize)(['super_admin', 'school_admin']), transport_controller_1.deleteTransportRoute);
+router.post('/assign', (0, rbac_middleware_1.authorize)(['super_admin', 'school_admin']), transport_controller_1.assignStudentTransport);
+router.delete('/assign/:student_id', (0, rbac_middleware_1.authorize)(['super_admin', 'school_admin']), transport_controller_1.removeStudentTransport);
+exports.default = router;

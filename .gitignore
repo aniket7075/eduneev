@@ -1,0 +1,29 @@
+# Node dependencies
+node_modules/
+*/node_modules/
+
+# Build artifacts
+dist/
+*/dist/
+
+# Environment variables
+.env
+.env.*
+*.env
+*/.env*
+
+# Firebase credentials
+*firebase-adminsdk*.json
+*eduneev*.json
+*.pem
+
+# Uploads and temporary files
+uploads/
+*/uploads/
+scratch/
+*/scratch/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

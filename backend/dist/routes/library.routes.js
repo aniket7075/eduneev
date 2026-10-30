@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const library_controller_1 = require("../controllers/library.controller");
+const auth_middleware_1 = require("../middlewares/auth.middleware");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.authenticate);
+router.get('/books', library_controller_1.getBooks);
+router.post('/books', library_controller_1.addBook);
+router.get('/issued/:student_id', library_controller_1.getIssuedBooks);
+router.post('/issue', library_controller_1.issueBook);
+exports.default = router;

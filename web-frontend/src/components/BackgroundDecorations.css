@@ -1,0 +1,94 @@
+.bg-decorations-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.decor {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+@keyframes floatX {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  50% { transform: translateX(30px) rotate(-5deg); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatDiagonal {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-20px, 20px) rotate(-10deg); }
+}
+
+/* Educational Elements */
+.decor-edu-1 {
+  top: 15%;
+  left: 8%;
+  width: 100px;
+  animation: floatY 12s ease-in-out infinite;
+}
+
+.decor-edu-2 {
+  bottom: 15%;
+  right: 8%;
+  width: 90px;
+  animation: floatY 14s ease-in-out infinite reverse;
+}
+
+.decor-edu-3 {
+  top: 25%;
+  right: 15%;
+  width: 110px;
+  animation: floatDiagonal 15s ease-in-out infinite;
+}
+
+.decor-edu-4 {
+  bottom: 25%;
+  left: 12%;
+  width: 120px;
+  animation: floatX 18s ease-in-out infinite;
+}
+
+.decor-shape-1 {
+  top: 40%;
+  left: 20%;
+  width: 40px;
+  animation: spinSlow 30s linear infinite;
+}
+
+.decor-shape-2 {
+  top: 50%;
+  right: 20%;
+  width: 40px;
+  animation: floatY 10s ease-in-out infinite;
+}
+
+@media print {
+  .bg-decorations-container,
+  .decor,
+  .decor-edu-1,
+  .decor-edu-2,
+  .decor-edu-3,
+  .decor-edu-4,
+  .decor-shape-1,
+  .decor-shape-2 {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}

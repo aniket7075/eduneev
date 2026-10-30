@@ -1,0 +1,9 @@
+node_modules/
+uploads/
+.env*
+.flaskenv*
+!-firebase-adminsdk-*.json
+*-firebase-adminsdk-*.json
+*.log
+!dist/
+!dist/**
